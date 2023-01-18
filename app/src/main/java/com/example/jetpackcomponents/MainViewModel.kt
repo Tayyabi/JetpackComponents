@@ -1,12 +1,16 @@
 package com.example.jetpackcomponents
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel(val initialCounter: Int) : ViewModel() {
 
-    var count: Int = initialCounter
+    val factsLiveData = MutableLiveData<Int> (initialCounter)
 
-    fun increment(){
+    var count: Int = initialCounter
+    fun incrementLiveData(){
         count++
+        factsLiveData.value = count
     }
+
 }
