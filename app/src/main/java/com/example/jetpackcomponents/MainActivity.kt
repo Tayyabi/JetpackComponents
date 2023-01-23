@@ -6,15 +6,18 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.jetpackcomponents.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
 
-    lateinit var txtCounter: TextView
-    private val btnCounter: Button
-    get() = findViewById(R.id.button)
+    lateinit var binding: ActivityMainBinding
+    //lateinit var txtCounter: TextView
+    //private val btnCounter: Button
+    //get() = findViewById(R.id.button)
 
 
     lateinit var mainViewModel: MainViewModel
@@ -25,23 +28,26 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        txtCounter = findViewById(R.id.txtCounter)
+        var counter = Counter(10)
+        //txtCounter = findViewById(R.id.txtCounter)
 
-        mainViewModel = ViewModelProvider(this,MainViewModelFactory(10)).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this,MainViewModelFactory(counter)).get(MainViewModel::class.java)
 
         Log.d(TAG, "onCreate: Activity")
         lifecycle.addObserver(MainActivityObserver())
 
-        btnCounter.setOnClickListener{
+        binding.counterBtn.setOnClickListener{
             mainViewModel.incrementLiveData()
            // txtCounter.text = mainViewModel.count.toString()
         }
 
 
+
         mainViewModel.factsLiveData.observe(this, Observer{
-            txtCounter.text = it.toString()
+            counter = it
+            binding.counter = counter
         })
 
     }
