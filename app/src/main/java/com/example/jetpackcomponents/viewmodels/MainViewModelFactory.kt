@@ -1,7 +1,8 @@
-package com.example.jetpackcomponents
+package com.example.jetpackcomponents.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.jetpackcomponents.models.Counter
 
 class MainViewModelFactory(val counter: Counter): ViewModelProvider.Factory {
 

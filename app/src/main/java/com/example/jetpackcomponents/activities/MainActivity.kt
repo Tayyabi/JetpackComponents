@@ -1,15 +1,17 @@
-package com.example.jetpackcomponents
+package com.example.jetpackcomponents.activities
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.jetpackcomponents.*
 import com.example.jetpackcomponents.databinding.ActivityMainBinding
+import com.example.jetpackcomponents.models.Counter
+import com.example.jetpackcomponents.viewmodels.MainViewModel
+import com.example.jetpackcomponents.viewmodels.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,12 +30,12 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         var counter = Counter(10)
         //txtCounter = findViewById(R.id.txtCounter)
 
-        mainViewModel = ViewModelProvider(this,MainViewModelFactory(counter)).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, MainViewModelFactory(counter)).get(MainViewModel::class.java)
 
         Log.d(TAG, "onCreate: Activity")
         lifecycle.addObserver(MainActivityObserver())

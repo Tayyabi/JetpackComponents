@@ -1,4 +1,4 @@
-package com.example.jetpackcomponents
+package com.example.jetpackcomponents.activities
 
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver

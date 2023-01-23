@@ -1,7 +1,8 @@
-package com.example.jetpackcomponents
+package com.example.jetpackcomponents.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.jetpackcomponents.models.Counter
 
 class MainViewModel(val initialCounter: Counter) : ViewModel() {
 
